@@ -21,6 +21,8 @@ import chalk from 'chalk'
 import util from 'util'
 import { v4 as uuidv4 } from 'uuid'
 
+const LOCAL_WALLET_TOOLBOX = `http://localhost:8100`
+
 /**
  * Knex database migration.
  */
@@ -397,9 +399,10 @@ export default class OverlayExpress {
         advertiser = new DiscoveryServices.WalletAdvertiser(
           this.network,
           this.privateKey,
-          this.network === 'test' // For now, we hard-code some storage servers. In the future, this needs to be configurable.
-            ? 'https://staging-storage.babbage.systems'
-            : 'https://storage.babbage.systems',
+          LOCAL_WALLET_TOOLBOX,
+          // this.network === 'test' // For now, we hard-code some storage servers. In the future, this needs to be configurable.
+          //   ? 'https://staging-storage.babbage.systems'
+          //   : 'https://storage.babbage.systems',
           // Until multiple protocols (like https+bsvauth+smf) are fully supported, HTTPS is the one to always use.
           `https://${this.advertisableFQDN}`
         )

@@ -26,6 +26,8 @@
     }
   },
   "scripts": {
+    "start": "node dist/esm/src/index.js",
+    "start:dev": "npm run build && npm start",
     "test": "npm run build && jest",
     "test:watch": "npm run build && jest --watch",
     "test:coverage": "npm run build && jest --coverage",
@@ -33,7 +35,9 @@
     "build": "tsc -b && tsconfig-to-dual-package tsconfig.cjs.json",
     "dev": "tsc -b -w",
     "prepublish": "npm run build",
-    "doc": "ts2md --inputFilename=mod.ts --outputFilename=API.md --filenameSubstring=API --firstHeadingLevel=1"
+    "doc": "ts2md --inputFilename=mod.ts --outputFilename=API.md --filenameSubstring=API --firstHeadingLevel=1",
+    "start:docker": "docker-compose up -d",
+    "stop:docker": "docker-compose down"
   },
   "repository": {
     "type": "git",
@@ -68,9 +72,11 @@
     "@bsv/sdk": "^1.4.6",
     "body-parser": "^1.20.3",
     "chalk": "^5.3.0",
+    "dotenv": "^16.4.7",
     "express": "^4.21.1",
     "knex": "^3.1.0",
     "mongodb": "^6.11.0",
+    "mysql2": "^3.14.0",
     "uuid": "^11.0.5"
   }
 }
